@@ -1,0 +1,126 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://player.gd" type="Script" id=1]
+[ext_resource path="res://player.png" type="Texture" id=2]
+[ext_resource path="res://player2.png" type="Texture" id=3]
+[ext_resource path="res://KinematicBody2D2.gd" type="Script" id=4]
+[ext_resource path="res://ball.png" type="Texture" id=5]
+[ext_resource path="res://ball.gd" type="Script" id=6]
+[ext_resource path="res://illust57-4768.jpg" type="Texture" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4.57941, 25.565 )
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 4.69202
+height = 46.1478
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 5.49575
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 241.098, 0.3386 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 241.098, 0.338609 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 0.360919, 121.222 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 0.360939, 121.222 )
+
+[node name="pong" type="Node2D"]
+position = Vector2( 505, -212 )
+scale = Vector2( -2.77066, 2.95326 )
+
+[node name="player1" type="KinematicBody2D" parent="."]
+position = Vector2( 157.724, 201.811 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player1"]
+position = Vector2( -1.14441e-05, -0.507874 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="player1"]
+position = Vector2( -7.62939e-06, -0.338623 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 2 )
+
+[node name="player2" type="KinematicBody2D" parent="."]
+position = Vector2( -140.761, 27.4273 )
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="player2"]
+position = Vector2( -138.956, 172.013 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player2"]
+position = Vector2( -138.234, 174.722 )
+shape = SubResource( 2 )
+
+[node name="ball" type="KinematicBody2D" parent="."]
+position = Vector2( -42.2282, 15.2374 )
+script = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="ball"]
+scale = Vector2( 0.1, 0.1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ball"]
+position = Vector2( -20.5727, 171.336 )
+scale = Vector2( 1.08231, 1.02854 )
+shape = SubResource( 3 )
+
+[node name="Ball" type="Sprite" parent="ball/CollisionShape2D"]
+position = Vector2( -1.52588e-05, 7.62939e-06 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+
+[node name="parede_baixo" type="StaticBody2D" parent="."]
+position = Vector2( -2.52647, -14.8988 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="parede_baixo"]
+position = Vector2( -58.8307, 315.245 )
+shape = SubResource( 4 )
+
+[node name="parede_cima" type="StaticBody2D" parent="."]
+position = Vector2( -2.52647, 13.2057 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="parede_cima"]
+position = Vector2( -58.8307, 72.1237 )
+shape = SubResource( 5 )
+
+[node name="parede_esquerda" type="StaticBody2D" parent="."]
+position = Vector2( -18.0462, 0.677216 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="parede_esquerda"]
+position = Vector2( 181.906, 193.684 )
+shape = SubResource( 6 )
+
+[node name="parede_direita" type="StaticBody2D" parent="."]
+position = Vector2( 16.9635, 2.03165 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="parede_direita"]
+position = Vector2( -299.568, 193.684 )
+shape = SubResource( 7 )
+
+[node name="background" type="Sprite" parent="."]
+position = Vector2( -59.9064, 193.382 )
+scale = Vector2( 0.0967006, 0.0680668 )
+z_index = -10
+texture = ExtResource( 7 )
+
+[node name="home" type="Label" parent="."]
+margin_left = -44.0328
+margin_top = 102.26
+margin_right = -4.03284
+margin_bottom = 116.26
+text = "0"
+
+[node name="away" type="Label" parent="."]
+margin_left = -82.2909
+margin_top = 101.583
+margin_right = -42.2909
+margin_bottom = 115.583
+text = "0"
